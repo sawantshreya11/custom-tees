@@ -2,7 +2,12 @@ function validateForm() {
     const tagline = document.getElementById('tagline').value;
     const phone = document.getElementById('phone').value;
     const email = document.getElementById('email').value;
-
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(reg => console.log("Service Worker Registered", reg))
+            .catch(err => console.log("Service Worker Registration Failed", err));
+    }
+    
     // Validate tagline length
     if (tagline.length > 100) {
         alert("Tagline should not exceed 100 characters.");
